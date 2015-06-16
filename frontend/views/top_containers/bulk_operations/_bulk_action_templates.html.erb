@@ -161,3 +161,26 @@
   </div>
   <% end %>
 --></div>
+
+<div id="bulk_action_print_labels"><!--
+  <%= form_tag({:controller => :top_containers, :action => :print_labels}, {:class => "form-horizontal", :id => "print_labels_form" }) do |f| %>
+    <div class="modal-body">
+        <div class="alert alert-info" id="alertBucket"><%= I18n.t("top_container._frontend.bulk_operations.print_labels_help") %></div>
+
+        <div class="selected-record-list well">
+            <ul>
+                {for container in selection}
+                <li>
+                  ${container.display_string}
+                  <input type="hidden" name="record_uris[]" value="${container.uri}">
+                </li>
+                {/for}
+            </ul>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-default"><%= I18n.t("top_container._frontend.bulk_operations.print_n_labels", {:n => "${selection.length}"}) %></button>
+        <button class="btn btn-cancel btn-default" data-dismiss="modal"><%= I18n.t("actions.cancel") %></button>
+    </div>
+  <% end %>
+--></div>

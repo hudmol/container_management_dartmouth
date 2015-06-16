@@ -4,6 +4,7 @@ ArchivesSpace::Application.routes.draw do
   match('/plugins/top_containers/bulk_operations/search' => 'top_containers#bulk_operation_search', :via => [:post])
   match('/plugins/top_containers/bulk_operations/browse' => 'top_containers#bulk_operations_browse', :via => [:get, :post])
   match('/plugins/top_containers/bulk_operations/update' => 'top_containers#bulk_operation_update', :via => [:post])
+  match('/plugins/top_containers/bulk_operations/print_labels' => 'top_containers#print_labels', :via => [:post])
   match('/plugins/top_containers/batch_delete' => 'top_containers#batch_delete', :via => [:post])
   match('/plugins/top_containers/:id' => 'top_containers#update', :via => [:post])
   match('/plugins/top_containers/:id/delete' => 'top_containers#delete', :via => [:post])

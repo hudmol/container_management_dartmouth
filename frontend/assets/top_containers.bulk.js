@@ -463,6 +463,25 @@ function BulkActionDelete(bulkContainerSearch) {
 
 
 /***************************************************************************
+ * BulkActionPrintLabels - bulk action for printing labels
+ *
+ */
+function BulkActionPrintLabels(bulkContainerSearch) {
+  var self = this;
+
+  self.bulkContainerSearch = bulkContainerSearch;
+
+  var $link = $("#bulkActionPrintLabels", self.bulkContainerSearch.$toolbar);
+
+  $link.on("click", function() {
+    AS.openCustomModal("bulkActionModal", "Print Top Container Labels", AS.renderTemplate("bulk_action_print_labels", {
+      selection: self.bulkContainerSearch.get_selection()
+    }), 'full');
+  });
+}
+
+
+/***************************************************************************
  * Initialise all special features on this page
  *
  */
@@ -477,5 +496,6 @@ $(function() {
   new BulkActionIlsHoldingUpdate(bulkContainerSearch);
   new BulkActionContainerProfileUpdate(bulkContainerSearch);
   new BulkActionLocationUpdate(bulkContainerSearch);
+  new BulkActionPrintLabels(bulkContainerSearch);
   new BulkActionDelete(bulkContainerSearch);
 });

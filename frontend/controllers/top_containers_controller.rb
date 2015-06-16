@@ -2,7 +2,7 @@ require 'uri'
 
 class TopContainersController < ApplicationController
 
-  set_access_control  "view_repository" => [:show, :typeahead, :bulk_operations_browse],
+  set_access_control  "view_repository" => [:show, :typeahead, :bulk_operations_browse, :print_labels],
                       "update_container_record" => [:new, :create, :edit, :update],
                       "manage_container_record" => [:index, :delete, :batch_delete, :bulk_operations, :bulk_operation_search, :bulk_operation_update, :update_barcodes]
 
@@ -163,6 +163,11 @@ class TopContainersController < ApplicationController
     end
 
     render_aspace_partial :partial => "top_containers/bulk_operations/bulk_action_success", :locals => {:result => result}
+  end
+
+
+  def print_labels
+    render_aspace_partial :partial => "top_containers/bulk_operations/bulk_action_success", :locals => {:result => {}}
   end
 
 
