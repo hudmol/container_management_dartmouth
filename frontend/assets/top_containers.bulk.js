@@ -467,18 +467,71 @@ function BulkActionDelete(bulkContainerSearch) {
  *
  */
 function BulkActionPrintLabels(bulkContainerSearch) {
+  this.bulkContainerSearch = bulkContainerSearch;
+  this.MENU_ID = "bulkActionPrintLabels";
+
+  this.setup_menu_item();
+}
+
+
+BulkActionPrintLabels.prototype.setup_menu_item = function() {
   var self = this;
 
-  self.bulkContainerSearch = bulkContainerSearch;
+  self.$menuItem = $("#" + self.MENU_ID, self.bulkContainerSearch.$toolbar);
 
-  var $link = $("#bulkActionPrintLabels", self.bulkContainerSearch.$toolbar);
-
-  $link.on("click", function() {
-    AS.openCustomModal("bulkActionModal", "Print Top Container Labels", AS.renderTemplate("bulk_action_print_labels", {
-      selection: self.bulkContainerSearch.get_selection()
-    }), 'full');
+  self.$menuItem.on("click", function(event) {
+    self.show();
   });
-}
+};
+
+
+BulkActionPrintLabels.prototype.show = function() {
+  var dialog_content = AS.renderTemplate("bulk_action_print_labels", {
+    selection: this.bulkContainerSearch.get_selection()
+  });
+
+  var $modal = AS.openCustomModal("bulkActionModal", this.$menuItem[0].text, dialog_content, 'full');
+
+  this.setup_action_form($modal);
+};
+
+
+BulkActionPrintLabels.prototype.setup_action_form = function($modal) {
+  var self = this;
+
+  var $form = $modal.find("form");
+
+  $form.on("submit", function(event) {
+    event.preventDefault();
+    self.perform_action($form, $modal);
+  });
+};
+
+
+BulkActionPrintLabels.prototype.perform_action = function($form, $modal) {
+  var self = this;
+
+  $.ajax({
+    url:"/plugins/top_containers/bulk_operations/print_labels",
+    data: $form.serializeArray(),
+    type: "post",
+    success: function(html) {
+      $modal.find("#labels_to_print").replaceWith(html);
+      $modal.find(".label-barcode").each(function() {
+          if (this.getAttribute("data")) {
+              $(this).barcode(this.getAttribute("data"), "codabar", {barHeight:30});
+	  }
+      });
+      $modal.trigger("resize");
+      //window.print();
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+      var error = AS.renderTemplate("template_bulk_operation_error_message", {message: jqXHR.responseText});
+      $('#alertBucket').replaceWith(error);
+    }
+  });
+};
+
 
 
 /***************************************************************************

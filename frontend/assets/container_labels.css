@@ -1,0 +1,99 @@
+.label-sheet {
+    display: table;
+}
+
+.label-sheet-row {
+    display: table-row;
+}
+
+.label-sheet-cell {
+    display: table-cell;
+}
+
+.box-label {
+    border-style: solid;
+    border-width: 1px;
+    width: 2in;
+    height: 4in;
+    margin: 0.5in;
+    text-align: center;
+}
+
+.label-location-header {
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+.label-location {
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.label-resource-id {
+    font-weight: 500;
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.label-indicator {
+    position: relative;
+    width: 70%;
+    left: 15%;
+    font-weight: 900;
+    font-size: 42px;
+    border-style: solid;
+    border-width: 2px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 0px;
+}
+
+.label-resource-title {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.label-series-title {
+    font-size: 12px;
+    margin-top: 20px;
+    height: 50px;
+}
+
+.label-description {
+    height: 40px;
+    font-size: 12px;
+    margin: 5px;
+}
+
+.label-date {
+
+}
+
+.label-divider {
+    position: relative;
+    border-style: solid;
+    border-width: 1px;
+    height: 1px;
+    width: 80%;
+    left: 10%;
+}
+
+.label-barcode {
+    height: 40px;
+}
+
+@media print {
+
+    header, footer, div.row, div.modal-backdrop, div.modal-header,
+    div.modal-footer, div.alert, div.selected-record-list {
+        display: none;
+    }
+
+    #labels_to_print {
+        display: block;
+    }
+
+    .box-label {
+    }
+
+}

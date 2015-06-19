@@ -167,7 +167,15 @@ class TopContainersController < ApplicationController
 
 
   def print_labels
-    render_aspace_partial :partial => "top_containers/bulk_operations/bulk_action_success", :locals => {:result => {}}
+    post_uri = "/repositories/#{session[:repo_id]}/top_containers/bulk/labels"
+    response = JSONModel::HTTP.post_form(URI(post_uri), {"record_uris[]" => Array(params[:record_uris])})
+    results = ASUtils.json_parse(response.body)
+
+    if response.code =~ /^4/
+      return render_aspace_partial :partial => 'top_containers/bulk_operations/error_messages', :locals => {:exceptions => result, :jsonmodel => "top_container"}, :status => 500
+    end
+
+    render_aspace_partial :partial => "top_containers/bulk_operations/bulk_action_labels", :locals => {:labels => results['results']}
   end
 
 

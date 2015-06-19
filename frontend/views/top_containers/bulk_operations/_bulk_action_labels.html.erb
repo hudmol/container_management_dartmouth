@@ -1,0 +1,46 @@
+<%
+  columns = 6
+  rows = 6
+  column = 1
+  row = 1
+%>
+
+<div id="labels_to_print" class="label-sheet">
+
+  <% labels.each_slice(columns) do |label_row| %>
+
+    <div class="label-sheet-row">
+      <% label_row.each do |label| %>
+        <% loc = label['container_locations'].select { |cl| cl['status'] == 'current' }.first %>
+        <% loc = loc ? loc['_resolved'] : {} %>
+        <% loc = loc.empty? ? '--' : ['building', 'floor', 'room', 'area'].map {|fld| loc[fld]}.compact.join(', ') %>
+        <% resource = label['collection'].empty? ? {} : label['collection'].first %>
+        <% series = label['series'].empty? ? {} : label['series'].first %>
+
+        <div class="label-sheet-cell">
+          <div class="box-label">
+            <div class="label-location-header">Box Location</div>
+            <div class="label-location"><%= loc %></div>
+            <div class="label-divider"></div>
+            <div class="label-resource-id"><%= resource['identifier'] %></div>
+            <div class="label-indicator"><%= label['indicator'] %></div>
+            <div class="label-resource-title"><%= resource['display_string'] %></div>
+            <div class="label-series-title"><%= series['display_string'] %></div>
+            <div class="label-divider"></div>
+            <div class="label-description">blah blah blah blah blah blah blah</div>
+            <div class="label-date">some time</div>
+            <div class="label-barcode" data="<%= label['barcode'] %>"></div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+  <% end %>
+
+  <div>
+    <%= labels.inspect %>
+  </div>
+
+</div>
+
+

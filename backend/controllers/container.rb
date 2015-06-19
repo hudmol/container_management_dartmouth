@@ -138,4 +138,23 @@ class ArchivesSpaceService < Sinatra::Base
     end
   end
 
+
+  Endpoint.post('/repositories/:repo_id/top_containers/bulk/labels')
+  .description("Bulk label data")
+  .params(["record_uris", [String], "A list of container uris"],
+          ["repo_id", :repo_id])
+  .permissions([])
+  .returns([200, "Container data for label printing"]) \
+  do
+    begin
+      results = params[:record_uris].map do |uri|
+        topcon = resolve_references(TopContainer.to_jsonmodel(JSONModel(:top_container).id_for(uri)), 'container_locations')
+      end
+
+      json_response(:results => results)
+    rescue Sequel::ValidationFailed => e
+      json_response({:error => e.errors, :uri => e.model.uri}, 400)
+    end
+  end
+
 end
