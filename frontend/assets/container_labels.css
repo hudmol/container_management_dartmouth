@@ -5,6 +5,7 @@
 
 .label-sheet-row {
     display: table-row;
+    height: 4.25in;
 }
 
 .label-sheet-cell {
@@ -79,7 +80,8 @@
 }
 
 .label-barcode {
-    height: 40px;
+    width: 90%;
+    height: 42px;
 }
 
 @media print {
