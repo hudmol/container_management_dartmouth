@@ -1,12 +1,14 @@
 <%
-  columns = 6
+  columns = 4
   rows = 6
+  column_width = "2.25in"
+  row_height = "4.25in"
 %>
 
 <div id="labels_to_print" class="label-sheet">
 
   <% columns.times do %>
-    <div class="label-sheet-cell" style="width: <%= 100/columns %>%"></div>
+    <div class="label-sheet-cell" style="width: <%= column_width %>"></div>
   <% end %>
 
   <% labels.each_slice(columns) do |label_row| %>
@@ -19,7 +21,7 @@
         <% resource = label['collection'].empty? ? {} : label['collection'].first %>
         <% series = label['series'].empty? ? {} : label['series'].first %>
 
-        <div class="label-sheet-cell">
+        <div class="label-sheet-cell" style="height: <%= row_height  %>">
           <div class="box-label">
             <div class="label-location-header">Box Location</div>
             <div class="label-location"><%= loc %></div>
@@ -42,7 +44,7 @@
 </div>
 
 <div>
-  <%= labels.inspect %>
+  <%# labels.inspect %>
 </div>
 
 

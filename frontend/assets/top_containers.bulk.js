@@ -516,14 +516,14 @@ BulkActionPrintLabels.prototype.perform_action = function($form, $modal) {
     data: $form.serializeArray(),
     type: "post",
     success: function(html) {
-      $modal.find("#labels_to_print").replaceWith(html);
-      $modal.find(".label-barcode").each(function() {
+      $(document).find(".center-block").replaceWith(html);
+      $(document).find(".label-barcode").each(function() {
           if (this.getAttribute("data")) {
               $(this).barcode(this.getAttribute("data"), "codabar", {barHeight:30});
 	  }
       });
       $modal.trigger("resize");
-      //window.print();
+      window.print();
     },
     error: function(jqXHR, textStatus, errorThrown) {
       var error = AS.renderTemplate("template_bulk_operation_error_message", {message: jqXHR.responseText});

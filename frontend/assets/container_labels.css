@@ -1,11 +1,13 @@
+#labels_to_print {
+    display: block;
+}
+
 .label-sheet {
     display: table;
-    width: 100%;
 }
 
 .label-sheet-row {
     display: table-row;
-    height: 4.25in;
 }
 
 .label-sheet-cell {
@@ -91,11 +93,20 @@
         display: none;
     }
 
+    div.modal {
+        position: absolute;
+	top: 0px;
+	left: 0px;
+        height: 100% !important;
+	width: 100% !important;
+    }
+
     #labels_to_print {
         display: block;
     }
 
     .box-label {
+        border-width: 0px;
     }
 
 }
