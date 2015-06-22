@@ -1,5 +1,6 @@
 #labels_to_print {
     display: block;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 .label-sheet {
@@ -75,7 +76,8 @@
 .label-divider {
     position: relative;
     border-style: solid;
-    border-width: 1px;
+    border-width: 0px;
+    border-bottom-width: 2px;
     height: 1px;
     width: 80%;
     left: 10%;

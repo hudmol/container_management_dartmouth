@@ -491,47 +491,7 @@ BulkActionPrintLabels.prototype.show = function() {
   });
 
   var $modal = AS.openCustomModal("bulkActionModal", this.$menuItem[0].text, dialog_content, 'full');
-
-  this.setup_action_form($modal);
 };
-
-
-BulkActionPrintLabels.prototype.setup_action_form = function($modal) {
-  var self = this;
-
-  var $form = $modal.find("form");
-
-  $form.on("submit", function(event) {
-    event.preventDefault();
-    self.perform_action($form, $modal);
-  });
-};
-
-
-BulkActionPrintLabels.prototype.perform_action = function($form, $modal) {
-  var self = this;
-
-  $.ajax({
-    url:"/plugins/top_containers/bulk_operations/print_labels",
-    data: $form.serializeArray(),
-    type: "post",
-    success: function(html) {
-      $(document).find(".center-block").replaceWith(html);
-      $(document).find(".label-barcode").each(function() {
-          if (this.getAttribute("data")) {
-              $(this).barcode(this.getAttribute("data"), "codabar", {barHeight:30});
-	  }
-      });
-      $modal.trigger("resize");
-      window.print();
-    },
-    error: function(jqXHR, textStatus, errorThrown) {
-      var error = AS.renderTemplate("template_bulk_operation_error_message", {message: jqXHR.responseText});
-      $('#alertBucket').replaceWith(error);
-    }
-  });
-};
-
 
 
 /***************************************************************************

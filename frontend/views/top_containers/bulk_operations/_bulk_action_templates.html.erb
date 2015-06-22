@@ -164,7 +164,7 @@
 
 <div id="bulk_action_print_labels"><!--
   <link href="<%= "#{AppConfig[:frontend_prefix]}assets/container_labels.css" %>" media="all" rel="stylesheet" type="text/css"/>
-  <%= form_tag({:controller => :top_containers, :action => :print_labels}, {:class => "form-horizontal", :id => "print_labels_form" }) do |f| %>
+  <%= form_tag({:controller => :top_containers, :action => :print_labels}, {:class => "form-horizontal", :id => "print_labels_form", :target => "_blank" }) do |f| %>
     <div class="modal-body">
         <div class="alert alert-info" id="alertBucket"><%= I18n.t("top_container._frontend.bulk_operations.print_labels_help") %></div>
 
