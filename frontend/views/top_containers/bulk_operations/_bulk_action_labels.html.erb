@@ -32,28 +32,51 @@
             loc = loc.empty? ? '--' : ['building', 'floor', 'room', 'area'].map {|fld| loc[fld]}.compact.join(', ')
             resource = label['collection'].empty? ? {} : label['collection'].first
             series = label['series'].empty? ? {} : label['series'].first
-            series = series.empty? ? "" : series['display_string'][0,50]
+            series = series.empty? ? "" : series['display_string']
             archival_record = label['linked_records'].empty? ? {} : label['linked_records'].first
             date = archival_record['dates'].empty? ? {} : archival_record['dates'].first
             note = archival_record['notes'].empty? ? {} : archival_record['notes'].select{|n| n['type'] == 'scopecontent'}.first
-            note = note.empty? ? "" : note['subnotes'].first['content'][0,75]
+            note = note.empty? ? "" : note['subnotes'].first['content']
+            rm = archival_record['external_ids'].empty? ? {} : archival_record['external_ids'].select{|e| e['source'] == 'RMS'}.first
+            records_management_id = rm.empty? ? "" : rm['external_id']
           %>
 
           <div class="label-sheet-cell" style="height: <%= row_height  %>">
             <div class="box-label">
-              <div class="label-location-header">Box Location</div>
-              <div class="label-location"><%= loc %></div>
-              <div class="label-divider"></div>
-              <div class="label-resource-id"><%= resource['identifier'] %></div>
-              <div class="label-indicator"><%= label['indicator'] %></div>
-              <div class="label-resource-title"><%= resource['display_string'] %></div>
-              <div class="label-series-title"><%= series %></div>
-              <div class="label-divider"></div>
-              <div class="label-description"><%= note  %></div>
-              <div class="label-date">
-                <%= date['expression'] ? date['expression'] : [date['begin'], date['end']].compact.join(' - ')  %>
-              </div>
-              <div class="label-barcode" data="<%= label['barcode'] %>"></div>
+              <% if params['label_type'] == 'rm' %>
+
+                <div class="label-records-management-id"><%= records_management_id %></div>
+                <div class="label-location-header">Box Location</div>
+                <div class="label-location"><%= loc %></div>
+                <div class="label-divider"></div>
+                <div class="label-resource-id"><%= resource['identifier'] %></div>
+                <div class="label-indicator"><%= label['indicator'] %></div>
+                <div class="label-resource-title"><%= resource['display_string'] %></div>
+                <div class="label-series-title-rm"><%= series[0,25] %></div>
+                <div class="label-divider"></div>
+                <div class="label-description-rm"><%= note[0,50]  %></div>
+                <div class="label-date">
+                  <%= date['expression'] ? date['expression'] : [date['begin'], date['end']].compact.join(' - ')  %>
+                </div>
+                <div class="label-barcode" data="<%= label['barcode'] %>"></div>
+
+               <% else %>
+
+                <div class="label-location-header">Box Location</div>
+                <div class="label-location"><%= loc %></div>
+                <div class="label-divider"></div>
+                <div class="label-resource-id"><%= resource['identifier'] %></div>
+                <div class="label-indicator"><%= label['indicator'] %></div>
+                <div class="label-resource-title"><%= resource['display_string'] %></div>
+                <div class="label-series-title"><%= series[0,50] %></div>
+                <div class="label-divider"></div>
+                <div class="label-description"><%= note[0,75]  %></div>
+                <div class="label-date">
+                  <%= date['expression'] ? date['expression'] : [date['begin'], date['end']].compact.join(' - ')  %>
+                </div>
+                <div class="label-barcode" data="<%= label['barcode'] %>"></div>
+
+              <% end %>
             </div>
           </div>
         <% end %>
@@ -61,10 +84,6 @@
 
     <% end %>
 
-  </div>
-
-  <div>
-    <%# labels.inspect %>
   </div>
 
 </body>

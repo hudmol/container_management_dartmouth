@@ -23,6 +23,22 @@
     text-align: center;
 }
 
+.label-records-management-id {
+    position: relative;
+    width: 70%;
+    height: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: serif;
+    font-weight: 500;
+    font-size: 32px;
+    border-style: solid;
+    border-width: 3px;
+    margin-top: 8px;
+    margin-bottom: 2px;
+    padding: 0px;
+}
+
 .label-location-header {
     font-size: 12px;
     margin-top: 10px;
@@ -42,7 +58,8 @@
 .label-indicator {
     position: relative;
     width: 70%;
-    left: 15%;
+    margin-left: auto;
+    margin-right: auto;
     font-weight: 900;
     font-size: 42px;
     border-style: solid;
@@ -69,6 +86,18 @@
     margin: 5px;
 }
 
+.label-series-title-rm {
+    font-size: 12px;
+    margin-top: 20px;
+    height: 30px;
+}
+
+.label-description-rm {
+    height: 30px;
+    font-size: 12px;
+    margin: 5px;
+}
+
 .label-date {
     font-size: 12px;
     height: 20px;
@@ -87,26 +116,11 @@
 .label-barcode {
     width: 90%;
     height: 42px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 @media print {
-
-    header, footer, div.row, div.modal-backdrop, div.modal-header,
-    div.modal-footer, div.alert, div.selected-record-list {
-        display: none;
-    }
-
-    div.modal {
-        position: absolute;
-	top: 0px;
-	left: 0px;
-        height: 100% !important;
-	width: 100% !important;
-    }
-
-    #labels_to_print {
-        display: block;
-    }
 
     .box-label {
         border-width: 0px;
