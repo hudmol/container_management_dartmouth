@@ -37,7 +37,7 @@
             date = archival_record['dates'].empty? ? {} : archival_record['dates'].first
             note = archival_record['notes'].empty? ? {} : archival_record['notes'].select{|n| n['type'] == 'scopecontent'}.first
             note = note.empty? ? "" : note['subnotes'].first['content']
-            rm = archival_record['external_ids'].empty? ? {} : archival_record['external_ids'].select{|e| e['source'] == 'RMS'}.first
+            rm = archival_record['external_ids'].empty? ? {} : archival_record['external_ids'].select{|e| e['source'] == 'Dartmouth DB'}.first
             records_management_id = rm.empty? ? "" : rm['external_id']
           %>
 
