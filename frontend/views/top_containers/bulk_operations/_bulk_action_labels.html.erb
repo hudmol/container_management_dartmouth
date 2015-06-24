@@ -37,6 +37,7 @@
             series = series.empty? ? "" : series['display_string']
 
             archival_record = label['linked_records'].empty? ? {} : label['linked_records'].first
+            archival_record = archival_record.nil? ? {} : archival_record['_resolved']
 
             date = archival_record['dates'].empty? ? {} : archival_record['dates'].first
 
@@ -45,7 +46,7 @@
 
             rm = archival_record['external_ids']
             rm = rm.empty? ? nil : archival_record['external_ids'].select{|e| e['source'] == AppConfig[:container_management_rms_source]}.first
-            records_management_id = rm.nil? ? "" : rm['external_id']
+            records_management_id = rm.nil? ? "--" : rm['external_id']
           %>
 
           <div class="label-sheet-cell" style="height: <%= row_height  %>">

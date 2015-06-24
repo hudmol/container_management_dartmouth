@@ -147,11 +147,10 @@ class ArchivesSpaceService < Sinatra::Base
   .returns([200, "Container data for label printing"]) \
   do
     begin
-      results = params[:record_uris].map do |uri|
-        topcon = resolve_references(TopContainer.to_jsonmodel(JSONModel(:top_container).id_for(uri)), 'container_locations')
-      end
-
-      json_response(:results => results)
+      ids = params[:record_uris].map {|uri| JSONModel(:top_container).id_for(uri)}
+      top_containers = TopContainer.sequel_to_jsonmodel(TopContainer.filter(:id => ids).all).map{|tc| tc.to_hash(:trusted)}
+      resolved = resolve_references(top_containers, ['container_locations', 'linked_records'])
+      json_response(:results => resolved)
     rescue Sequel::ValidationFailed => e
       json_response({:error => e.errors, :uri => e.model.uri}, 400)
     end

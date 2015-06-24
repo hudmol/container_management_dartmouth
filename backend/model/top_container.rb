@@ -150,7 +150,7 @@ class TopContainer < Sequel::Model(:top_container)
 
       obj.linked_archival_records.each do |archival_record|
         json['linked_records'] ||= []
-        json['linked_records'] << ArchivalObject.to_jsonmodel(archival_record)
+        json['linked_records'] << {'ref' => archival_record.uri}
       end
 
       obj.series.each do |series|
