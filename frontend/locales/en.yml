@@ -94,6 +94,13 @@ en:
         rapid_barcode_entry: Rapid Barcode Entry
         rapid_barcode_entry_existing_barcode: Existing Barcode
         rapid_barcode_entry_new_barcode: New Barcode
+        print_labels: Print Labels
+        print_labels_help: Print labels for all selected containers.
+        print_n_labels: "Print %{n} labels"
+        label_page_title: ArchivesSpace Container Labels
+        label_type_label: Label Type
+        label_type_local: Local Storage Label
+        label_type_rm: Records Management Storage Label
         batch_delete: Delete Top Containers
         batch_delete_help: Delete all selected containers.
         update_n_records: "Update %{n} records"

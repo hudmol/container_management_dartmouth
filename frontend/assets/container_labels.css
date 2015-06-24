@@ -1,0 +1,129 @@
+#labels_to_print {
+    display: block;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.label-sheet {
+    display: table;
+}
+
+.label-sheet-row {
+    display: table-row;
+}
+
+.label-sheet-cell {
+    display: table-cell;
+}
+
+.box-label {
+    border-style: solid;
+    border-width: 1px;
+    width: 2in;
+    height: 4in;
+    text-align: center;
+}
+
+.label-records-management-id {
+    position: relative;
+    width: 70%;
+    height: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: serif;
+    font-weight: 500;
+    font-size: 32px;
+    border-style: solid;
+    border-width: 3px;
+    margin-top: 8px;
+    margin-bottom: 2px;
+    padding: 0px;
+}
+
+.label-location-header {
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+.label-location {
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.label-resource-id {
+    font-weight: 500;
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.label-indicator {
+    position: relative;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 900;
+    font-size: 42px;
+    border-style: solid;
+    border-width: 2px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 0px;
+}
+
+.label-resource-title {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.label-series-title {
+    font-size: 12px;
+    margin-top: 20px;
+    height: 60px;
+}
+
+.label-description {
+    height: 50px;
+    font-size: 12px;
+    margin: 5px;
+}
+
+.label-series-title-rm {
+    font-size: 12px;
+    margin-top: 20px;
+    height: 30px;
+}
+
+.label-description-rm {
+    height: 30px;
+    font-size: 12px;
+    margin: 5px;
+}
+
+.label-date {
+    font-size: 12px;
+    height: 20px;
+}
+
+.label-divider {
+    position: relative;
+    border-style: solid;
+    border-width: 0px;
+    border-bottom-width: 2px;
+    height: 1px;
+    width: 80%;
+    left: 10%;
+}
+
+.label-barcode {
+    width: 90%;
+    height: 42px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media print {
+
+    .box-label {
+        border-width: 0px;
+    }
+
+}
