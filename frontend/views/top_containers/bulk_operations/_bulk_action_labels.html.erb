@@ -29,16 +29,22 @@
           <% 
             loc = label['container_locations'].select { |cl| cl['status'] == 'current' }.first
             loc = loc ? loc['_resolved'] : {}
-            loc = loc.empty? ? '--' : ['building', 'floor', 'room', 'area'].map {|fld| loc[fld]}.compact.join(', ')
+            loc = loc.empty? ? 'Unknown' : ['building', 'floor', 'room', 'area'].map {|fld| loc[fld]}.compact.join(', ')
+
             resource = label['collection'].empty? ? {} : label['collection'].first
+
             series = label['series'].empty? ? {} : label['series'].first
             series = series.empty? ? "" : series['display_string']
+
             archival_record = label['linked_records'].empty? ? {} : label['linked_records'].first
+
             date = archival_record['dates'].empty? ? {} : archival_record['dates'].first
-            note = archival_record['notes'].empty? ? {} : archival_record['notes'].select{|n| n['type'] == 'scopecontent'}.first
-            note = note.empty? ? "" : note['subnotes'].first['content']
-            rm = archival_record['external_ids'].empty? ? {} : archival_record['external_ids'].select{|e| e['source'] == 'Dartmouth DB'}.first
-            records_management_id = rm.empty? ? "" : rm['external_id']
+
+            note = archival_record['notes'].empty? ? nil : archival_record['notes'].select{|n| n['type'] == 'scopecontent'}.first
+            note = note.nil? ? "" : note['subnotes'].first['content']
+
+            rm = archival_record['external_ids'].empty? ? nil : archival_record['external_ids'].select{|e| e['source'] == 'Dartmouth DB'}.first
+            records_management_id = rm.nil? ? "" : rm['external_id']
           %>
 
           <div class="label-sheet-cell" style="height: <%= row_height  %>">
