@@ -18,7 +18,9 @@ class LabelData
     labels = []
     resolved_top_containers.each do |label|
       label['linked_records'].each do |ao|
-        labels << label.merge({'archival_object' => ao}).reject{|k| k == 'linked_records'}
+        if ao['_resolved']['other_level'] && ao['_resolved']['other_level'].strip.downcase == 'box'
+          labels << label.merge({'archival_object' => ao}).reject{|k| k == 'linked_records'}
+        end
       end
     end
     @labels = labels
