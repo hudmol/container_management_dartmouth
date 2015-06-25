@@ -96,7 +96,7 @@ en:
         rapid_barcode_entry_new_barcode: New Barcode
         print_labels: Print Labels
         print_labels_help: Print labels for all selected containers.
-        print_n_labels: "Print %{n} labels"
+        print_n_labels: "Print labels for %{n} containers"
         label_page_title: ArchivesSpace Container Labels
         label_type_label: Label Type
         label_type_local: Local Storage Label

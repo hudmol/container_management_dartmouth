@@ -4,6 +4,8 @@
   column_width = "2.25in"
   row_height = "4.25in"
   page_break = "1in" # not implemented
+
+  rms_source = AppConfig[:container_management_rms_source]
 %>
 
 <html>
@@ -33,11 +35,9 @@
 
             resource = label['collection'].empty? ? {} : label['collection'].first
 
-            series = label['series'].empty? ? {} : label['series'].first
-            series = series.empty? ? "" : series['display_string']
+            series = label['archival_object']['series']
 
-            archival_record = label['linked_records'].empty? ? {} : label['linked_records'].first
-            archival_record = archival_record.nil? ? {} : archival_record['_resolved']
+            archival_record = label['archival_object']['_resolved']
 
             date = archival_record['dates'].empty? ? {} : archival_record['dates'].first
 
@@ -45,7 +45,7 @@
             note = note.nil? ? "" : note['subnotes'].first['content']
 
             rm = archival_record['external_ids']
-            rm = rm.empty? ? nil : archival_record['external_ids'].select{|e| e['source'] == AppConfig[:container_management_rms_source]}.first
+            rm = rm.empty? ? nil : archival_record['external_ids'].select{|e| e['source'] == rms_source}.first
             records_management_id = rm.nil? ? "--" : rm['external_id']
           %>
 

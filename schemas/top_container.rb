@@ -62,9 +62,7 @@
             "ref" => {
               "type" => "JSONModel(:archival_object) uri",
             },
-            "display_string" => {"type" => "string"},
-            "identifier" => {"type" => "string"},
-            "level_display_string" => {"type" => "string"},
+            "series" => {"type" => "string"},
             "_resolved" => {
               "type" => "object",
               "readonly" => "true"
