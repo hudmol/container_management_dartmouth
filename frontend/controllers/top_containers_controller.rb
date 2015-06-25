@@ -172,10 +172,10 @@ class TopContainersController < ApplicationController
     results = ASUtils.json_parse(response.body)
 
     if response.code =~ /^4/
-      return render_aspace_partial :partial => 'top_containers/bulk_operations/error_messages', :locals => {:exceptions => result, :jsonmodel => "top_container"}, :status => 500
+      return render_aspace_partial :partial => 'top_containers/bulk_operations/error_messages', :locals => {:exceptions => results, :jsonmodel => "top_container"}, :status => 500
     end
 
-    render_aspace_partial :partial => "top_containers/bulk_operations/bulk_action_labels", :locals => {:labels => results['results']}
+    render_aspace_partial :partial => "top_containers/bulk_operations/bulk_action_labels", :locals => {:labels => results}
   end
 
 
