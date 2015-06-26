@@ -149,11 +149,13 @@ class TopContainer < Sequel::Model(:top_container)
       json['long_display_string'] = obj.long_display_string
 
       obj.linked_archival_records.each do |archival_record|
-        json['linked_records'] ||= []
-        json['linked_records'] << {
-          'ref' => archival_record.uri,
-          'series' => find_title_for(archival_record.series)
-        }
+        if archival_record.respond_to?(:series) && archival_record.series
+          json['linked_records'] ||= []
+          json['linked_records'] << {
+            'ref' => archival_record.uri,
+            'series' => find_title_for(archival_record.series)
+          }
+        end
       end
 
       obj.series.each do |series|
