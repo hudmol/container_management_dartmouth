@@ -52,6 +52,25 @@
         }
       },
 
+      "linked_records" => {
+        "readonly" => "true",
+        "type" => "array",
+        "items" => {
+          "type" => "object",
+          "subtype" => "ref",
+          "properties" => {
+            "ref" => {
+              "type" => "JSONModel(:archival_object) uri",
+            },
+            "series" => {"type" => "string"},
+            "_resolved" => {
+              "type" => "object",
+              "readonly" => "true"
+            }
+          }
+        }
+      },
+
       "series" => {
         "readonly" => "true",
         "type" => "array",

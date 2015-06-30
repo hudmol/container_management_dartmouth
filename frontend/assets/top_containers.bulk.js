@@ -463,6 +463,38 @@ function BulkActionDelete(bulkContainerSearch) {
 
 
 /***************************************************************************
+ * BulkActionPrintLabels - bulk action for printing labels
+ *
+ */
+function BulkActionPrintLabels(bulkContainerSearch) {
+  this.bulkContainerSearch = bulkContainerSearch;
+  this.MENU_ID = "bulkActionPrintLabels";
+
+  this.setup_menu_item();
+}
+
+
+BulkActionPrintLabels.prototype.setup_menu_item = function() {
+  var self = this;
+
+  self.$menuItem = $("#" + self.MENU_ID, self.bulkContainerSearch.$toolbar);
+
+  self.$menuItem.on("click", function(event) {
+    self.show();
+  });
+};
+
+
+BulkActionPrintLabels.prototype.show = function() {
+  var dialog_content = AS.renderTemplate("bulk_action_print_labels", {
+    selection: this.bulkContainerSearch.get_selection()
+  });
+
+  var $modal = AS.openCustomModal("bulkActionModal", this.$menuItem[0].text, dialog_content, 'full');
+};
+
+
+/***************************************************************************
  * Initialise all special features on this page
  *
  */
@@ -477,5 +509,6 @@ $(function() {
   new BulkActionIlsHoldingUpdate(bulkContainerSearch);
   new BulkActionContainerProfileUpdate(bulkContainerSearch);
   new BulkActionLocationUpdate(bulkContainerSearch);
+  new BulkActionPrintLabels(bulkContainerSearch);
   new BulkActionDelete(bulkContainerSearch);
 });
