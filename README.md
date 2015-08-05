@@ -5,6 +5,10 @@ ArchivesSpace plugin to add a new container type to ArchivesSpace.
 More information on these at
 http://campuspress.yale.edu/yalearchivesspace/2014/11/20/managing-content-managing-containers-managing-access/.
 
+This plugin is a fork of https://github.com/hudmol/container_management
+It is compatible with ArchivesSpace v1.3
+
+
 ## Installing it
 
 To install, just activate the plugin in your config/config.rb file by
