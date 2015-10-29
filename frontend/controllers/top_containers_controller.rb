@@ -207,6 +207,13 @@ class TopContainersController < ApplicationController
 
 
   def perform_search
+    unless params[:indicator].blank?
+      unless params[:q].blank?
+        params[:q] = "#{params[:q]} AND "
+      end
+      params[:q] << "indicator_u_sstr:#{params[:indicator]}"
+    end
+
     search_params = params_for_backend_search.merge({
                                                       'type[]' => ['top_container']
                                                     })

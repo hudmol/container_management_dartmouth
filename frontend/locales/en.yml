@@ -105,6 +105,7 @@ en:
         batch_delete_help: Delete all selected containers.
         update_n_records: "Update %{n} records"
         delete_n_records: "Delete %{n} records"
+        indicator_search_hint: Space separated list or a range like this [104493 TO 104495]
 
   container_profile:
     _singular: Container Profile
